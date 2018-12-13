@@ -10,6 +10,17 @@ import TBody from './components/table/TBody'
 import TFoot from './components/table/TFoot'
 import THead from './components/table/THead'
 
+let window;
+if (typeof window !== "undefined") {
+        window = window;
+    } else if (typeof global !== "undefined") {
+        window = global;
+    } else if (typeof self !== "undefined"){
+        window = self;
+    } else {
+        window = {};
+    }
+
 const CommonConstants = require('./components/CommonConstants');
 const Hoek = require('hoek');
 
@@ -170,6 +181,7 @@ class Reactables extends Main {
     componentDidMount() {
         let that = this;
         // turn on infinite scroll
+
         if (this.settings.struct.infiniteScroll === true) {
             window.addEventListener('scroll', (e) => {
                 this.handleScroll();
